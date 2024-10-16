@@ -4,7 +4,6 @@ const $result = $form.querySelector(':scope > .result');
 $form.onsubmit = (e) => {
     e.preventDefault();
     const xhr = new XMLHttpRequest();
-    const responses = JSON.parse(xhr.responseText);
     xhr.onreadystatechange = () => {
         if (xhr.readyState !== XMLHttpRequest.DONE) {
             return;
@@ -12,9 +11,10 @@ $form.onsubmit = (e) => {
         if (xhr.status < 200 || xhr.status >= 300) {
             return;
         }
-        if (responses['result'] === 'success') {
+        const response = JSON.parse(xhr.responseText);
+        if (response['result'] === 'success') {
             $result.innerText = '로그인 성공'
-            localStorage.setItem($id.value, responses['token']);
+            localStorage.setItem($id.value, response['token']);
         } else {
             $result.innerText = '로그인 실패'
         }
