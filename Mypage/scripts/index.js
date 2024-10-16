@@ -19,10 +19,8 @@ $form.onsubmit = (e) => {
         }
     }
     const url = new URL('http://192.168.4.252:24122/user/check');
-    const $id = $form['id'];
-    const $pw = $form['pw'];
-    url.searchParams.set('token', localStorage.getItem($id.value));
-    url.searchParams.set('id', $id.value);
+    url.searchParams.set('token', localStorage.getItem('token'));
+    url.searchParams.set('id', localStorage.getItem('id'));
     xhr.open('GET', url.toString());
     xhr.send();
 }

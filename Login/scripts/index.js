@@ -14,7 +14,8 @@ $form.onsubmit = (e) => {
         const response = JSON.parse(xhr.responseText);
         if (response['result'] === 'success') {
             $result.innerText = '로그인 성공'
-            localStorage.setItem($id.value, response['token']);
+            localStorage.setItem('token', response['token']);
+            localStorage.setItem('id', $id.value);
         } else {
             $result.innerText = '로그인 실패'
         }

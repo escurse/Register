@@ -1,4 +1,10 @@
 @charset "UTF-8";
 
-
-
+#form > .button {
+    height: 2rem;
+    width: 5rem;
+    background-color: #2196f3;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.25rem;
+}
