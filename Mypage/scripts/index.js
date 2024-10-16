@@ -12,18 +12,17 @@ $form.onsubmit = (e) => {
             return;
         }
         const response = JSON.parse(xhr.responseText);
-        console.log(localStorage.getItem($id.value))
-        if ($id.value === 'a1234') {
-            $result.innerText = localStorage.getItem($id.value)
+        if (response['result'] === 'signed') {
+            $result.innerText = 'id님 반갑습니다.'
         } else {
-            $result.innerText = '등록 실패'
+            $result.innerText = '로그인 되어 있지 않습니다.'
         }
     }
     const url = new URL('http://192.168.4.252:24122/user/check');
     const $id = $form['id'];
     const $pw = $form['pw'];
+    url.searchParams.set('token', localStorage.getItem($id.value));
     url.searchParams.set('id', $id.value);
-    url.searchParams.set('pw', $pw.value);
     xhr.open('GET', url.toString());
     xhr.send();
 }
